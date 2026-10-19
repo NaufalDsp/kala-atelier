@@ -37,3 +37,6 @@ playwright-report/
 prd.md
 design.md
 
+# TypeScript build info
+*.tsbuildinfo
+
