@@ -10,7 +10,6 @@ import { ClosingCTA } from "@/components/home/closing-cta";
 import { projectRepository } from "@/lib/repositories";
 import { LOCAL_TESTIMONIALS } from "@/data/testimonials";
 
-export const revalidate = 3600; // Incremental Static Regeneration: 1 hour
 
 export default async function HomePage() {
   const featuredProjects = await projectRepository.getFeaturedProjects();
