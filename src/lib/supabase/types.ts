@@ -19,6 +19,7 @@ export interface Database {
         Update: {
           email?: string;
         };
+        Relationships: [];
       };
       projects: {
         Row: {
@@ -51,6 +52,7 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["projects"]["Insert"]>;
+        Relationships: [];
       };
       project_images: {
         Row: {
@@ -70,6 +72,7 @@ export interface Database {
           id?: string;
         };
         Update: Partial<Database["public"]["Tables"]["project_images"]["Insert"]>;
+        Relationships: [];
       };
       project_stages: {
         Row: {
@@ -86,6 +89,7 @@ export interface Database {
           id?: string;
         };
         Update: Partial<Database["public"]["Tables"]["project_stages"]["Insert"]>;
+        Relationships: [];
       };
       testimonials: {
         Row: {
@@ -102,6 +106,7 @@ export interface Database {
           id?: string;
         };
         Update: Partial<Database["public"]["Tables"]["testimonials"]["Insert"]>;
+        Relationships: [];
       };
       team_members: {
         Row: {
@@ -118,6 +123,7 @@ export interface Database {
           id?: string;
         };
         Update: Partial<Database["public"]["Tables"]["team_members"]["Insert"]>;
+        Relationships: [];
       };
       enquiries: {
         Row: {
@@ -143,6 +149,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["enquiries"]["Insert"]>;
+        Relationships: [];
       };
       site_settings: {
         Row: {
@@ -158,8 +165,22 @@ export interface Database {
         };
         Insert: Partial<Database["public"]["Tables"]["site_settings"]["Row"]>;
         Update: Partial<Database["public"]["Tables"]["site_settings"]["Insert"]>;
+        Relationships: [];
       };
+    };
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
+    Enums: {
+      project_type: "rumah" | "renovasi" | "komersial" | "interior";
+      project_status: "selesai" | "dibangun" | "rancangan";
+      enquiry_status: "baru" | "dihubungi" | "cocok" | "tidak_cocok" | "arsip";
+    };
+    CompositeTypes: {
+      [_ in never]: never;
     };
   };
 }
-
