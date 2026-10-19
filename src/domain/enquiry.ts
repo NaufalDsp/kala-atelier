@@ -78,3 +78,18 @@ export const budgetLabels: Record<EnquiryBudget, string> = {
   gt5m: "> Rp5 Miliar",
   belum_tahu: "Belum Ditentukan",
 };
+
+export const builderStatusLabels: Record<BuilderStatus, string> = {
+  ya: "Sudah memiliki kontraktor rekanan",
+  belum_ada_calon: "Belum ada calon / masih mencari",
+  butuh_bantuan: "Membutuhkan bantuan seleksi kontraktor dari studio",
+};
+
+export const sourceLabels: Record<EnquirySource, string> = {
+  teman: "Rekomendasi Teman / Kolega",
+  keluarga: "Keluarga / Kerabat",
+  google: "Pencarian Web Google",
+  instagram: "Instagram (@kalaatelier)",
+  lainnya: "Lainnya",
+};
+
