@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 export const PROJECT_TYPES = ["rumah", "renovasi", "komersial", "interior"] as const;
 export type ProjectType = (typeof PROJECT_TYPES)[number];
 

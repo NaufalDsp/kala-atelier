@@ -1,19 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
 
+const emptySubscribe = () => () => {};
+
 export function LocalClock({ className }: { className?: string }) {
+  const isMounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
   const [timeString, setTimeString] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsMounted(true);
-
     const updateClock = () => {
       const now = new Date();
-      // Formatter for Asia/Jakarta time (WIB)
       const options: Intl.DateTimeFormatOptions = {
         timeZone: "Asia/Jakarta",
         hour: "2-digit",
@@ -25,24 +29,18 @@ export function LocalClock({ className }: { className?: string }) {
       const timeFormatter = new Intl.DateTimeFormat("id-ID", options);
       setTimeString(timeFormatter.format(now));
 
-      // Studio opening hours logic:
-      // Mon-Fri: 08:30 - 17:00 WIB
-      // Sat: 09:00 - 14:00 WIB
-      // Sun: Closed
       const jakartaDate = new Date(
         now.toLocaleString("en-US", { timeZone: "Asia/Jakarta" })
       );
-      const day = jakartaDate.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+      const day = jakartaDate.getDay();
       const hour = jakartaDate.getHours();
       const minute = jakartaDate.getMinutes();
       const timeInMinutes = hour * 60 + minute;
 
       let open = false;
       if (day >= 1 && day <= 5) {
-        // Mon-Fri: 08:30 (510 min) to 17:00 (1020 min)
         open = timeInMinutes >= 510 && timeInMinutes < 1020;
       } else if (day === 6) {
-        // Sat: 09:00 (540 min) to 14:00 (840 min)
         open = timeInMinutes >= 540 && timeInMinutes < 840;
       }
 
@@ -54,7 +52,7 @@ export function LocalClock({ className }: { className?: string }) {
     return () => clearInterval(interval);
   }, []);
 
-  if (!isMounted) {
+  if (!isMounted || !timeString) {
     return (
       <span className={cn("font-mono text-mono text-stone select-none", className)}>
         --:--:-- WIB
@@ -79,4 +77,3 @@ export function LocalClock({ className }: { className?: string }) {
     </div>
   );
 }
-
