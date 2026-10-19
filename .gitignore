@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js build output
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env
+.env*.local
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Vercel & Turborepo
+.vercel/
+.turbo/
+
+# Testing & Coverage
+coverage/
+test-results/
+playwright-report/
+
+# Project reference specifications (per project requirement)
+prd.md
+design.md
+
